@@ -1,6 +1,7 @@
-package edu.fje.dam2;
+package edu.fje.smx8;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.pm.PackageManager;
@@ -94,12 +95,20 @@ public class M31_CalendariAmpliatActivity extends AppCompatActivity {
      */
     private void afegirEvent() {
 
+        int calendarId = getCalendarIdByName(getContentResolver(), "sergi.grau@fje.edu");
+        if (calendarId == -1) {
+            Toast.makeText(getApplicationContext(), "Calendar not found", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         ContentValues esdeveniment = new ContentValues();
-        esdeveniment.put(CalendarContract.Events.CALENDAR_ID, 1); // Tipus de calendari
+        esdeveniment.put(CalendarContract.Events.CALENDAR_ID, getCalendarIdByName(getContentResolver(), "sergi.grau@fje.edu")); // Tipus de calendari
         esdeveniment.put(CalendarContract.Events.TITLE, "DAM2 Escola del Clot");
         esdeveniment.put(CalendarContract.Events.DTSTART, Calendar.getInstance().getTimeInMillis());
-        esdeveniment.put(CalendarContract.Events.DTEND, Calendar.getInstance().getTimeInMillis());
+        esdeveniment.put(CalendarContract.Events.DTEND, Calendar.getInstance().getTimeInMillis()+60*60*1000);
         esdeveniment.put(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Madrid");
+
+
         Uri uri = contentResolver.insert(CalendarContract.Events.CONTENT_URI, esdeveniment);
 
         // La URI conté el contentProvider i retorna el id del event creat
@@ -126,8 +135,7 @@ public class M31_CalendariAmpliatActivity extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     String nomIntern = cursor.getString(0);
                     String nomMostrat = cursor.getString(1);
-                    String color = cursor.getString(cursor.getColumnIndex(
-                            CalendarContract.Calendars.CALENDAR_COLOR));
+                    @SuppressLint("Range") String color = cursor.getString(cursor.getColumnIndex(CalendarContract.Calendars.CALENDAR_COLOR));
                     Boolean seleccionat = !cursor.getString(3).equals("0");
                     calendaris.add(nomMostrat);
                 }
