@@ -95,14 +95,9 @@ public class M31_CalendariAmpliatActivity extends AppCompatActivity {
      */
     private void afegirEvent() {
 
-        int calendarId = getCalendarIdByName(getContentResolver(), "sergi.grau@fje.edu");
-        if (calendarId == -1) {
-            Toast.makeText(getApplicationContext(), "Calendar not found", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         ContentValues esdeveniment = new ContentValues();
-        esdeveniment.put(CalendarContract.Events.CALENDAR_ID, getCalendarIdByName(getContentResolver(), "sergi.grau@fje.edu")); // Tipus de calendari
+        esdeveniment.put(CalendarContract.Events.CALENDAR_ID, obtenirCalendariPerId(getContentResolver(), "sergi.grau@fje.edu")); // Tipus de calendari
         esdeveniment.put(CalendarContract.Events.TITLE, "DAM2 Escola del Clot");
         esdeveniment.put(CalendarContract.Events.DTSTART, Calendar.getInstance().getTimeInMillis());
         esdeveniment.put(CalendarContract.Events.DTEND, Calendar.getInstance().getTimeInMillis()+60*60*1000);
@@ -163,6 +158,29 @@ public class M31_CalendariAmpliatActivity extends AppCompatActivity {
             String titol = cursor.getString(1);
             events.add(titol);
         }
+    }
+
+    @SuppressLint("Range")
+    private int obtenirCalendariPerId(ContentResolver contentResolver, String calendarName) {
+        Uri uri = CalendarContract.Calendars.CONTENT_URI;
+        String[] projection = new String[]{
+                CalendarContract.Calendars._ID,
+                CalendarContract.Calendars.CALENDAR_DISPLAY_NAME
+        };
+        String selection = CalendarContract.Calendars.CALENDAR_DISPLAY_NAME + " = ?";
+        String[] selectionArgs = new String[]{calendarName};
+
+        Cursor cursor = contentResolver.query(uri, projection, selection, selectionArgs, null);
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    return cursor.getInt(cursor.getColumnIndex(CalendarContract.Calendars._ID));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return -1; // Return -1 if calendar not found
     }
 
 }
