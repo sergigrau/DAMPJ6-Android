@@ -1,5 +1,6 @@
-package edu.fje.dam2;
+package edu.fje.dam2.dam2pj6;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * les propietats del layout
  * @author sergi.grau@fje.edu
  * @version 1.0, 06/11/2012
-* @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/10/2020, actualització a API.30
  */
 public class M08_BotonsRadioOrientacioActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -25,35 +26,22 @@ public class M08_BotonsRadioOrientacioActivity extends AppCompatActivity impleme
     RadioGroup gravetat;
 
     @Override
-   	protected void onCreate(Bundle savedInstanceState) {
-   		super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.m08_botons_radio_orientacio);
         orientacio = (RadioGroup) findViewById(R.id.orientation);
         orientacio.setOnCheckedChangeListener(this);
         gravetat = (RadioGroup) findViewById(R.id.gravity);
         gravetat.setOnCheckedChangeListener(this);
     }
-    
+
     @Override
     public void onCheckedChanged(RadioGroup grup, int checkedId) {
-        switch (checkedId) {
-
-            case R.id.horizontal:
-                orientacio.setOrientation(LinearLayout.HORIZONTAL);
-                break;
-            case R.id.vertical:
-                orientacio.setOrientation(LinearLayout.VERTICAL);
-                break;
-            case R.id.left:
-                gravetat.setGravity(Gravity.LEFT);
-                break;
-            case R.id.center:
-                gravetat.setGravity(Gravity.CENTER_HORIZONTAL);
-                break;
-            case R.id.right:
-                gravetat.setGravity(Gravity.RIGHT);
-                break;
-        }
+        if(checkedId==R.id.horizontal )  orientacio.setOrientation(LinearLayout.HORIZONTAL);
+        if(checkedId==R.id.vertical )  orientacio.setOrientation(LinearLayout.VERTICAL);
+        if(checkedId==R.id.left )  gravetat.setGravity(Gravity.LEFT);
+        if(checkedId==R.id.center )  gravetat.setGravity(Gravity.CENTER_HORIZONTAL);
+        if(checkedId==R.id.right )  gravetat.setGravity(Gravity.RIGHT);
     }
 }
 
