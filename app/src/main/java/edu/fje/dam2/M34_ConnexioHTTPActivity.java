@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0 4/04/2013
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M34_ConnexioHTTPActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class M34_ConnexioHTTPActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.m34_connexio_http);
-		text = (TextView) findViewById(R.id.text);
+		text = findViewById(R.id.text);
 		
 		//per evitar que el fil de la GUI tingui ocupada la comunicació
 		//caldria millorar-ho amb un servei
@@ -56,11 +57,9 @@ public class M34_ConnexioHTTPActivity extends AppCompatActivity {
 	}
 
 	private void llegirStream(InputStream in) {
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new InputStreamReader(in));
-			String linia = "";
-			StringBuilder linies = new StringBuilder();
+		try (var reader = new BufferedReader(new InputStreamReader(in))) {
+			String linia;
+			var linies = new StringBuilder();
 			
 			while ((linia = reader.readLine()) != null) {
 				linies.append(linia);
@@ -69,14 +68,6 @@ public class M34_ConnexioHTTPActivity extends AppCompatActivity {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 

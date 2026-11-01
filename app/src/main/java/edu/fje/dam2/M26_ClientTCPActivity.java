@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author sergi.grau@fje.edu
  * @version 1.0 9.01.2015
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M26_ClientTCPActivity extends AppCompatActivity {
 
@@ -40,14 +41,11 @@ public class M26_ClientTCPActivity extends AppCompatActivity {
 		StrictMode.setThreadPolicy(politiques);
 
 		String res = "ERROR";
-		try {
+		try (var s = new Socket("192.168.1.13", 12345);
+			 var out = new PrintWriter(s.getOutputStream(), true);
+			 var in = new BufferedReader(new InputStreamReader(s.getInputStream()))) {
 
-			Socket s = new Socket("192.168.1.13", 12345);
-			System.out.println("C: Connectat al servidor" + s.toString());
-			PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					s.getInputStream()));
-
+			System.out.println("C: Connectat al servidor" + s);
 			out.println("SERGI");
 			res = in.readLine();
 
@@ -55,7 +53,7 @@ public class M26_ClientTCPActivity extends AppCompatActivity {
 			e.printStackTrace();
 		}
 
-		TextView tv = new TextView(this);
+		var tv = new TextView(this);
 		tv.setText("C: " + res);
 		setContentView(tv);
 	}

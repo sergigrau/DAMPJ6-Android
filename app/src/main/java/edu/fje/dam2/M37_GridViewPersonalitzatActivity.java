@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0 6.12.2014
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 public class M37_GridViewPersonalitzatActivity extends AppCompatActivity {
@@ -62,25 +63,19 @@ SPACE - 62, SHIFT - 59, ENTER - 66, BACKSPACE - 67
         setContentView(R.layout.m37_activity_gridview_personalitzat);
 
 
-        gridView = (GridView) findViewById(R.id.gridView1);
-        etiqueta = (TextView) findViewById(R.id.seleccio);
+        gridView = findViewById(R.id.gridView1);
+        etiqueta = findViewById(R.id.seleccio);
 
         gridView.setAdapter(new ImageAdapter(this, SISTEMA_OPERATIU));
-        gridView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+        gridView.setOnItemClickListener((parent, v, position, id) -> {
+            var imm = (InputMethodManager) getSystemService(M37_GridViewPersonalitzatActivity.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
-
-                InputMethodManager imm = (InputMethodManager) getSystemService(M37_GridViewPersonalitzatActivity.this.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
-                etiqueta.setText(SISTEMA_OPERATIU[position]);
-                focus = (TextView) v.findViewById(R.id.grid_item_label);
-                Toast.makeText(
-                        getApplicationContext(),
-                        focus.getText(), Toast.LENGTH_SHORT).show();
-
-            }
+            etiqueta.setText(SISTEMA_OPERATIU[position]);
+            focus = v.findViewById(R.id.grid_item_label);
+            Toast.makeText(
+                    getApplicationContext(),
+                    focus.getText(), Toast.LENGTH_SHORT).show();
         });
 
     }

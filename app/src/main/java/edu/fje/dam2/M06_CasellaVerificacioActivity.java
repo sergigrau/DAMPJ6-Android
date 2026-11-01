@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author sergi.grau@fje.edu
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M06_CasellaVerificacioActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -25,7 +26,7 @@ public class M06_CasellaVerificacioActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m06_casella_verificacio);
-        cb = (CheckBox) findViewById(R.id.check);
+        cb = findViewById(R.id.check);
         cb.setOnCheckedChangeListener(this);
     }
 

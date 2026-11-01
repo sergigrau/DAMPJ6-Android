@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi grau
  * @version 1.0, 22/10/2013
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 public class M03_ComunicacioIntentDepenentActivity extends AppCompatActivity {
@@ -22,8 +23,8 @@ public class M03_ComunicacioIntentDepenentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m03_comunicacio_intent_depenent);
 
-        Intent intent = getIntent();
-        String missatge = intent.getStringExtra(M03_ComunicacioIntentActivity.MISSATGE_CLAU);
+        var intent = getIntent();
+        var missatge = intent.getStringExtra(M03_ComunicacioIntentActivity.MISSATGE_CLAU);
         TextView textView = findViewById(R.id.textData);
         textView.setTextSize(20);
         textView.setText(missatge);

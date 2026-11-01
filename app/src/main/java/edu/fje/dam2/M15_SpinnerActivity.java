@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author sergi.grau@fje.edu
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M15_SpinnerActivity extends AppCompatActivity implements
         AdapterView.OnItemSelectedListener {
@@ -30,10 +31,10 @@ public class M15_SpinnerActivity extends AppCompatActivity implements
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.m15_spinner);
-        seleccio = (TextView) findViewById(R.id.seleccio);
-        Spinner spin = (Spinner) findViewById(R.id.spinner);
+        seleccio = findViewById(R.id.seleccio);
+        Spinner spin = findViewById(R.id.spinner);
         spin.setOnItemSelectedListener(this);
-        ArrayAdapter<String> aa = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> aa = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, items);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(aa);

@@ -1,4 +1,4 @@
-package edu.fje.android;
+package edu.fje.dam2;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
  *
  * @author sergi.grau@fje.edu
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M04_Menu extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class M04_Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m04_menu);
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
+        coordinatorLayout = findViewById(R.id.coordinator);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }

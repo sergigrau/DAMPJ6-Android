@@ -16,6 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+/**
+ * Activitat de gestió de contactes.
+ *
+ * @author sergi.grau@fje.edu
+ * @version 2.0, 1/11/2026 actualització a API36
+ */
 public class M32_ContactesActivity extends AppCompatActivity
 {
     private static final int REQUEST_READ_CONTACTS_PERMISSION = 0;

@@ -21,7 +21,8 @@ import androidx.core.content.ContextCompat;
  *
  * @author sergi.grau@fje.edu
  * @version 1.0 20/11/2013
- * @version 2.0, 1/10/2020 actualització a API30 *
+ * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M33_ContactesProviderActivity extends ListActivity {
 

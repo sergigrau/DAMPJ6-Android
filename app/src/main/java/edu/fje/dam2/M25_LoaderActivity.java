@@ -18,6 +18,7 @@ import androidx.loader.content.Loader;
  * @author sergi.grau@fje.edu
  * @version 1.0 9.01.2015
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M25_LoaderActivity extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 

@@ -19,6 +19,7 @@ import android.widget.TextView;
  * @author sergi.grau@fje.edu
  * @version 1.0, 29/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M20_MenusEmergentsActivity extends ListActivity {
 
@@ -37,9 +38,9 @@ public class M20_MenusEmergentsActivity extends ListActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.m20_menus_emergents);
-        setListAdapter(new ArrayAdapter<String>(this,
+        setListAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, items));
-        seleccio = (TextView) findViewById(R.id.seleccio);
+        seleccio = findViewById(R.id.seleccio);
 
         registerForContextMenu(getListView());
     }

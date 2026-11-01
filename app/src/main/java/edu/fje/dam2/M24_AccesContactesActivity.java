@@ -1,4 +1,4 @@
-package edu.fje.dam2.dam2pj6;
+package edu.fje.dam2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
  * @author sergi.grau@fje.edu
  * @version 2.0 28.11.2016
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M24_AccesContactesActivity extends AppCompatActivity {
 
@@ -47,16 +48,12 @@ public class M24_AccesContactesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m24_acces_contactes);
-        botoNom = (Button) findViewById(R.id.botoNoms);
+        botoNom = findViewById(R.id.botoNoms);
 
-        botoNom.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        ContactsContract.Contacts.CONTENT_URI);
-                startActivityForResult(intent, OBTENIR_CONTACTE);
-            }
+        botoNom.setOnClickListener(arg0 -> {
+            var intent = new Intent(Intent.ACTION_PICK,
+                    ContactsContract.Contacts.CONTENT_URI);
+            startActivityForResult(intent, OBTENIR_CONTACTE);
         });
         requestContactsPermission();
 

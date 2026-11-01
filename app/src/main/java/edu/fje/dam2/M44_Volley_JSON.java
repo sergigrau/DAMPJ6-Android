@@ -28,6 +28,7 @@ import org.json.JSONObject;
  * @author sergi.grau@fje.edu
  * @version 1.0 26.11.2018
  * @version 2.0, 1/1/2021 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 public class M44_Volley_JSON extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class M44_Volley_JSON extends AppCompatActivity {
     protected void onCreate(Bundle instanciaDesada) {
         super.onCreate(instanciaDesada);
         setContentView(R.layout.m42_volley_basic);
-        final TextView textSortida = (TextView) findViewById(R.id.sortida);
+        final TextView textSortida = findViewById(R.id.sortida);
 
 
         RequestQueue cuaPeticions;

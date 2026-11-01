@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author sergi.grau@fje.edu
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 public class M22_GoogleMapsActivity extends AppCompatActivity {
@@ -27,18 +28,16 @@ public class M22_GoogleMapsActivity extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.m22_google_maps);
 
-        Button btn = (Button) findViewById(R.id.mapa);
-        lat = (EditText) findViewById(R.id.lat);
-        lng = (EditText) findViewById(R.id.lng);
+        Button btn = findViewById(R.id.mapa);
+        lat = findViewById(R.id.lat);
+        lng = findViewById(R.id.lng);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String _lat = lat.getText().toString();
-                String _lon = lng.getText().toString();
-                Uri uri = Uri.parse("geo:" + _lat + "," + _lon);
+        btn.setOnClickListener(view -> {
+            var _lat = lat.getText().toString();
+            var _lon = lng.getText().toString();
+            var uri = Uri.parse("geo:" + _lat + "," + _lon);
 
-                startActivity(new Intent(Intent.ACTION_VIEW, uri));
-            }
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
         });
     }
 }

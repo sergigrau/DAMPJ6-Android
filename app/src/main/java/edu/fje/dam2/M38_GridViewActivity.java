@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author Sergi Grau (sergi.grau@fje.edu)
  * @version 1.0 6.12.2014
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  *
  */
 public class M38_GridViewActivity extends AppCompatActivity {
@@ -36,20 +37,15 @@ public class M38_GridViewActivity extends AppCompatActivity {
  
 		setContentView(R.layout.m38_gridview);
  
-		gridView = (GridView) findViewById(R.id.gridView1);
+		gridView = findViewById(R.id.gridView1);
  
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
 				android.R.layout.simple_list_item_1, numbers);
  
 		gridView.setAdapter(adapter);
  
-		gridView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View v,
-				int position, long id) {
-			   Toast.makeText(getApplicationContext(),
-				((TextView) v).getText(), Toast.LENGTH_SHORT).show();
-			}
-		});
+		gridView.setOnItemClickListener((parent, v, position, id) -> Toast.makeText(getApplicationContext(),
+		   ((TextView) v).getText(), Toast.LENGTH_SHORT).show());
  
 	}
  

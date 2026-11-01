@@ -19,6 +19,7 @@ import java.util.Date;
  * @author sergi.grau@fje.edu
  * @version 1.0, 22/10/2013
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M03_ComunicacioIntentActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,8 +58,8 @@ public class M03_ComunicacioIntentActivity extends AppCompatActivity implements 
 	 * @param view
 	 */
 	public void enviarMissatge(View view) {
-	    Intent intent = new Intent(this, M03_ComunicacioIntentDepenentActivity.class);
-	    String missatge = boto.getText().toString();
+	    var intent = new Intent(this, M03_ComunicacioIntentDepenentActivity.class);
+	    var missatge = boto.getText().toString();
 	    intent.putExtra(MISSATGE_CLAU, missatge);
 	    startActivity(intent);
 	}

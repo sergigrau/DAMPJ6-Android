@@ -17,6 +17,7 @@ import java.util.*;
  * @author sergi.grau@fje.edu
  * @version 2.0 28.11.2016
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M30_CalendariBasicActivity extends AppCompatActivity {
 
@@ -38,8 +39,8 @@ public class M30_CalendariBasicActivity extends AppCompatActivity {
      */
     private void afegirEvent() {
 
-        Calendar calendari = Calendar.getInstance();
-        Intent intent = new Intent(Intent.ACTION_EDIT);
+        var calendari = Calendar.getInstance();
+        var intent = new Intent(Intent.ACTION_EDIT);
         intent.setType("vnd.android.cursor.item/event");
         intent.putExtra("beginTime", calendari.getTimeInMillis());
         intent.putExtra("allDay", true);

@@ -23,6 +23,7 @@ import java.util.Calendar;
  * @author sergi.grau@fje.edu
  * @version 1.0, 22/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M18_PickerDialogActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class M18_PickerDialogActivity extends AppCompatActivity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.m18_picker_dialog);
-		etiquetaDataHora = (TextView) findViewById(R.id.dataHora);
+		etiquetaDataHora = findViewById(R.id.dataHora);
 		actualitzarEtiqueta();
 	}
 
@@ -54,22 +55,15 @@ public class M18_PickerDialogActivity extends AppCompatActivity {
 		etiquetaDataHora.setText(formatDataHora.format(dataHora.getTime()));
 	}
 
-	DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
-		@Override
-		public void onDateSet(DatePicker view, int year, int monthOfYear,
-				int dayOfMonth) {
-			dataHora.set(Calendar.YEAR, year);
-			dataHora.set(Calendar.MONTH, monthOfYear);
-			dataHora.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-			actualitzarEtiqueta();
-		}
+	DatePickerDialog.OnDateSetListener d = (view, year, monthOfYear, dayOfMonth) -> {
+		dataHora.set(Calendar.YEAR, year);
+		dataHora.set(Calendar.MONTH, monthOfYear);
+		dataHora.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+		actualitzarEtiqueta();
 	};
-	TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
-		@Override
-		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			dataHora.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			dataHora.set(Calendar.MINUTE, minute);
-			actualitzarEtiqueta();
-		}
+	TimePickerDialog.OnTimeSetListener t = (view, hourOfDay, minute) -> {
+		dataHora.set(Calendar.HOUR_OF_DAY, hourOfDay);
+		dataHora.set(Calendar.MINUTE, minute);
+		actualitzarEtiqueta();
 	};
 }

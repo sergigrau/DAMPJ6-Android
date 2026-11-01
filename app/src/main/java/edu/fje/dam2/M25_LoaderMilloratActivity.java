@@ -18,6 +18,7 @@ import android.app.LoaderManager;
  * @author sergi.grau@fje.edu
  * @version 1.0 26/12/2013
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  * 
  */
 public class M25_LoaderMilloratActivity extends ListActivity implements
@@ -47,7 +48,7 @@ public class M25_LoaderMilloratActivity extends ListActivity implements
 		getListView().setEmptyView(progressBar);
 
 		// afegim la barra al layout
-		ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+		ViewGroup root = findViewById(android.R.id.content);
 		root.addView(progressBar);
 
 		// especifiquem les columnes a afegir a la vista per al adaptador cursor

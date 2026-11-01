@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0, 18/11/2012
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M13_GridLayoutActivity extends AppCompatActivity {
 

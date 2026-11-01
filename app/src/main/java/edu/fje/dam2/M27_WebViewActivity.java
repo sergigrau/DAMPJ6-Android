@@ -34,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0, 29/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M27_WebViewActivity extends AppCompatActivity {
 
@@ -44,7 +45,7 @@ public class M27_WebViewActivity extends AppCompatActivity {
 
         super.onCreate(icicle);
         setContentView(R.layout.m27_webview);
-        navegador = (WebView) findViewById(R.id.webkit);
+        navegador = findViewById(R.id.webkit);
 
         /*crea un directori a l'arrel al mateix nivell que res anomenat assets, 
         i dins col·loca les pàgines que es vulguin colocar dins d'aplicació*/
@@ -52,7 +53,6 @@ public class M27_WebViewActivity extends AppCompatActivity {
         navegador.getSettings().setJavaScriptEnabled(true);
 
         //per geolocalització de HTML5
-        navegador.getSettings().setAppCacheEnabled(true);
         navegador.getSettings().setDatabaseEnabled(true);
         navegador.getSettings().setDomStorageEnabled(true);
         navegador.setWebChromeClient(new WebChromeClient() {

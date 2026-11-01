@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0, 22/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 public class M17_CellesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -30,9 +31,9 @@ public class M17_CellesActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.m17_celles);
-        seleccio = (TextView) findViewById(R.id.seleccio);
-        GridView g = (GridView) findViewById(R.id.grid);
-        g.setAdapter(new ArrayAdapter<String>(this, R.layout.m17_definicio_cella, items));
+        seleccio = findViewById(R.id.seleccio);
+        GridView g = findViewById(R.id.grid);
+        g.setAdapter(new ArrayAdapter<>(this, R.layout.m17_definicio_cella, items));
         g.setOnItemClickListener(this);
     }
 

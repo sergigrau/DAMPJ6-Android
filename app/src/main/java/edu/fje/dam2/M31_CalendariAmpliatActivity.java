@@ -1,4 +1,4 @@
-package edu.fje.smx8;
+package edu.fje.dam2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -32,13 +32,14 @@ import java.util.Set;
  * @author sergi.grau@fje.edu
  * @version 1.0 10.01.2015
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M31_CalendariAmpliatActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_READ_CALENDAR = 100;
 
     private ContentResolver contentResolver;
-    private Set<String> calendaris = new HashSet<String>();
-    private List<String> events = new ArrayList<String>();
+    private Set<String> calendaris = new HashSet<>();
+    private List<String> events = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

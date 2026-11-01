@@ -22,6 +22,7 @@ import android.widget.EditText;
  * @author sergi.grau@fje.edu
  * @version 1.0, 29/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M23_BaseDeDadesBasicActivity extends ListActivity {
 
@@ -33,12 +34,9 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
         super.onCreate(icicle);
 
 
-        ArrayList<String> resultats = new ArrayList<String>();
+        var resultats = new ArrayList<String>();
 
-        SQLiteDatabase baseDades = null;
-        try {
-
-            baseDades = this.openOrCreateDatabase(BASE_DADES, MODE_PRIVATE, null);
+        try (SQLiteDatabase baseDades = this.openOrCreateDatabase(BASE_DADES, MODE_PRIVATE, null)) {
 
 
             baseDades.execSQL("CREATE TABLE IF NOT EXISTS "
@@ -57,17 +55,13 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
                     + " VALUES ('joan', 'perez', 'US', 34);");
 
 
-            Cursor c = baseDades.rawQuery("SELECT nom, edat"
+            try (Cursor c = baseDades.rawQuery("SELECT nom, edat"
                     + " FROM " + TAULA
                     + " WHERE edat > 10 LIMIT 7;",
-                    null);
+                    null)) {
 
-
-            int columnaNom = c.getColumnIndex("nom");
-            int columnaEdat = c.getColumnIndex("edat");
-
-
-            if (c != null) {
+                int columnaNom = c.getColumnIndex("nom");
+                int columnaEdat = c.getColumnIndex("edat");
 
                 if (c.isBeforeFirst()) {
                     c.moveToFirst();
@@ -87,14 +81,9 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
                     } while (c.moveToNext());
                 }
             }
-
-        } finally {
-            if (baseDades != null) {
-                baseDades.close();
-            }
         }
 
-        this.setListAdapter(new ArrayAdapter<String>(this,
+        this.setListAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, resultats));
     }
 }

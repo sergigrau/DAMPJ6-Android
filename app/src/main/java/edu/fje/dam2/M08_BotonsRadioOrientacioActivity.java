@@ -1,4 +1,4 @@
-package edu.fje.dam2.dam2pj6;
+package edu.fje.dam2;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0, 06/11/2012
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M08_BotonsRadioOrientacioActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -29,9 +30,9 @@ public class M08_BotonsRadioOrientacioActivity extends AppCompatActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m08_botons_radio_orientacio);
-        orientacio = (RadioGroup) findViewById(R.id.orientation);
+        orientacio = findViewById(R.id.orientation);
         orientacio.setOnCheckedChangeListener(this);
-        gravetat = (RadioGroup) findViewById(R.id.gravity);
+        gravetat = findViewById(R.id.gravity);
         gravetat.setOnCheckedChangeListener(this);
     }
 

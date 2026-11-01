@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0 26/11/2013
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M28_BaseDeDadesMilloratActivity extends AppCompatActivity {
 
@@ -30,19 +31,14 @@ public class M28_BaseDeDadesMilloratActivity extends AppCompatActivity {
 
 		AlumneDbUtilitat utilitatDB = new AlumneDbUtilitat(getBaseContext());
 
-		// seleccionem les date per a poder escriure
+		// seleccionem les dades per a poder escriure
 		SQLiteDatabase db = utilitatDB.getWritableDatabase();
 
-		// creem un mapa de valors on les columnes són les claus
-		ContentValues valors = new ContentValues();
-		valors.put(AlumneContract.TaulaAlumne.COLUMNA_CODI, "1237");
-		valors.put(AlumneContract.TaulaAlumne.COLUMNA_NOM, "joan");
-		valors.put(AlumneContract.TaulaAlumne.COLUMNA_NOTA, 8);
+		var alumne = new AlumneRecord("1237", "joan", 8);
 
 		// afegim una fila i retorna la clau primària
-		long id;
-		id = db.insert(AlumneContract.TaulaAlumne.NOM_TAULA,
-				AlumneContract.TaulaAlumne.COLUMNA_NULL, valors);
+		long id = db.insert(AlumneContract.TaulaAlumne.NOM_TAULA,
+				AlumneContract.TaulaAlumne.COLUMNA_NULL, alumne.toContentValues());
 
 		
 		db = utilitatDB.getReadableDatabase();
@@ -154,5 +150,18 @@ class AlumneDbUtilitat extends SQLiteOpenHelper {
 
 	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		onUpgrade(db, oldVersion, newVersion);
+	}
+}
+
+/**
+ * Record immutable per representar les dades d'un Alumne
+ */
+record AlumneRecord(String codi, String nom, int nota) {
+	public ContentValues toContentValues() {
+		var valors = new ContentValues();
+		valors.put(AlumneContract.TaulaAlumne.COLUMNA_CODI, codi);
+		valors.put(AlumneContract.TaulaAlumne.COLUMNA_NOM, nom);
+		valors.put(AlumneContract.TaulaAlumne.COLUMNA_NOTA, nota);
+		return valors;
 	}
 }

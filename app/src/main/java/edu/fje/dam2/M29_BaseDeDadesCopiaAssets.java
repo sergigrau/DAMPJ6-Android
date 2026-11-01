@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0 26/11/2013
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M29_BaseDeDadesCopiaAssets extends AppCompatActivity {
 
@@ -72,17 +73,16 @@ class UtilitatCopia {
    }
 
    private void copyDatabase(File dbFile) throws IOException {
-       InputStream is = context.getAssets().open(DB_NAME);
-       OutputStream os = new FileOutputStream(dbFile);
+       try (var is = context.getAssets().open(DB_NAME);
+            var os = new FileOutputStream(dbFile)) {
 
-       byte[] buffer = new byte[1024];
-       while (is.read(buffer) > 0) {
-           os.write(buffer);
+           byte[] buffer = new byte[1024];
+           int length;
+           while ((length = is.read(buffer)) > 0) {
+               os.write(buffer, 0, length);
+           }
+           os.flush();
        }
-
-       os.flush();
-       os.close();
-       is.close();
    }
 
 }

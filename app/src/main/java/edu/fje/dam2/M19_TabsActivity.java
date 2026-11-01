@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0, 26/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M19_TabsActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class M19_TabsActivity extends AppCompatActivity {
 
         super.onCreate(icicle);
         setContentView(R.layout.m19_tabs);
-        TabHost tabs = (TabHost) findViewById(R.id.tabhost);
+        TabHost tabs = findViewById(R.id.tabhost);
         tabs.setup();
         TabHost.TabSpec spec = tabs.newTabSpec("tag1");
         spec.setContent(R.id.tab1);

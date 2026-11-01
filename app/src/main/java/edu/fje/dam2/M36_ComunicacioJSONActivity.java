@@ -30,6 +30,7 @@ import org.json.JSONObject;
  * @author sergi.grau@fje.edu
  * @version 3.0 16.12.2016
  * @version 4.0, 10.1.2021 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M36_ComunicacioJSONActivity extends AppCompatActivity {
     //cal desactivar proxy d'Android
@@ -65,23 +66,17 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
 
         setContentView(R.layout.m34_connexio_http);
 
-        botoEnviar = (Button) findViewById(R.id.botoEnviar) ;
-        text = (TextView) findViewById(R.id.text) ;
-        nom = (EditText) findViewById(R.id.nom) ;
+        botoEnviar = findViewById(R.id.botoEnviar) ;
+        text = findViewById(R.id.text) ;
+        nom = findViewById(R.id.nom) ;
 
-        botoEnviar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //enviar dades a Backend
-                try {
-                    URL urlObj = new URL(URL+nom.getText().toString());
-                    text.setText(llegirJSON(urlObj));
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+        botoEnviar.setOnClickListener(view -> {
+            //enviar dades a Backend
+            try {
+                var urlObj = new URL(URL + nom.getText().toString());
+                text.setText(llegirJSON(urlObj));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
@@ -138,15 +133,21 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
     }
 
     /**
+     * Record immutable per representar un usuari
+     */
+    public record Usuari(String nom, String cognom) {}
+
+    /**
      * Mètode per escriure dades en una extensió de servidor web o servidor
      * d'aplicacions
      */
 
     public void escriureJSON() {
-        JSONObject object = new JSONObject();
+        var usuari = new Usuari("Sergi", "Grau");
+        var object = new JSONObject();
         try {
-            object.put("nom", "Sergi");
-            object.put("cognom", "Grau");
+            object.put("nom", usuari.nom());
+            object.put("cognom", usuari.cognom());
         } catch (JSONException e) {
             e.printStackTrace();
         }

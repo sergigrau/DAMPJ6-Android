@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author sergi.grau@fje.edu
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M16_AutoCompleteTextViewActivity extends AppCompatActivity implements TextWatcher {
 
@@ -31,10 +32,10 @@ public class M16_AutoCompleteTextViewActivity extends AppCompatActivity implemen
 
         super.onCreate(icicle);
         setContentView(R.layout.m16_auto_complete_text_view);
-        seleccio = (TextView) findViewById(R.id.seleccio);
-        entrada = (AutoCompleteTextView) findViewById(R.id.entrada);
+        seleccio = findViewById(R.id.seleccio);
+        entrada = findViewById(R.id.entrada);
         entrada.addTextChangedListener(this);
-        entrada.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items));
+        entrada.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, items));
     }
 
     @Override

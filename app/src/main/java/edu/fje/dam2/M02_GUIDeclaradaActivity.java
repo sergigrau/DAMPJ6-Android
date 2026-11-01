@@ -16,6 +16,7 @@ import java.util.Date;
  * @author sergi.grau@fje.edu
  * @version 1.0, 06/11/2012
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M02_GUIDeclaradaActivity extends AppCompatActivity implements View.OnClickListener {
     private Button boto;
@@ -28,7 +29,7 @@ public class M02_GUIDeclaradaActivity extends AppCompatActivity implements View.
         // mira /res/layout/m02_gui_declarada.xmllarada.xml per
         // a la descripció de la vista, la qual serà el contingut de la pantalla
         setContentView(R.layout.m02_gui_declarada);
-        boto = (Button) findViewById(R.id.boto);
+        boto = findViewById(R.id.boto);
         // aquest exercici fa servir onclick en el layout en comptes de boto.setOnClickListener(this);
         mostrarData();
     }

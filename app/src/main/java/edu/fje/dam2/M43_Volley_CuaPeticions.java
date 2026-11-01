@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
  * @author sergi.grau@fje.edu
  * @version 1.0 26.11.2018
  * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 
@@ -31,7 +32,7 @@ public class M43_Volley_CuaPeticions extends AppCompatActivity {
     protected void onCreate(Bundle instanciaDesada) {
         super.onCreate(instanciaDesada);
         setContentView(R.layout.m42_volley_basic);
-        final TextView textSortida = (TextView) findViewById(R.id.sortida);
+        final TextView textSortida = findViewById(R.id.sortida);
 
         RequestQueue cuaPeticions;
 
@@ -50,19 +51,9 @@ public class M43_Volley_CuaPeticions extends AppCompatActivity {
         String url ="http:/192.168.1.14:8000";
 
         // petició i gestió asícrona de la resposta.
-        StringRequest peticio = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String resposta) {
-                        textSortida.setText("Resposta ok!");
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        textSortida.setText("no funciona!");
-                    }
-                });
+        var peticio = new StringRequest(Request.Method.GET, url,
+                resposta -> textSortida.setText("Resposta ok!"),
+                error -> textSortida.setText("no funciona!"));
 
         // afegir petició a la cua
         cuaPeticions.add(peticio);

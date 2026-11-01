@@ -19,6 +19,7 @@ import android.widget.TextView;
  * @author sergi.grau@fje.edu
  * @version 1.0, 19.10.2015
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M14_ListActivityIntentActivity extends ListActivity {
 
@@ -43,7 +44,7 @@ public class M14_ListActivityIntentActivity extends ListActivity {
 
 		 String[] items = getResources().getStringArray(R.array.fruites);
 
-		adapter = new ArrayAdapter<String>(this,
+		adapter = new ArrayAdapter<>(this,
 				android.R.layout.simple_list_item_multiple_choice, items);
 
 		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -57,17 +58,17 @@ public class M14_ListActivityIntentActivity extends ListActivity {
 		// selecció múltiple
 
 		SparseBooleanArray checked = parent.getCheckedItemPositions();
-		ArrayList<String> itemsSeleccionats = new ArrayList<String>();
+		var itemsSeleccionats = new ArrayList<String>();
 		for (int i = 0; i < checked.size(); i++) {
 			int pos = checked.keyAt(i);
 			if (checked.valueAt(i))
 				itemsSeleccionats.add(adapter.getItem(pos));
 		}
 
-		Intent intent = new Intent(getApplicationContext(),
+		var intent = new Intent(getApplicationContext(),
 				M14_ListActivityIntentDepenentActivity.class);
 
-		Bundle b = new Bundle();
+		var b = new Bundle();
 		b.putStringArrayList("itemsSeleccionats", itemsSeleccionats);
 
 		intent.putExtras(b);

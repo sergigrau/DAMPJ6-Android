@@ -15,6 +15,7 @@ import android.widget.TextView;
  * adb -s emulator-5554 forward tcp:12345 tcp:12345
  * @author sergi.grau@fje.edu
  * @version 1.0 9.01.2015
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 
 public class M26_ServidorTCPActivity extends Activity {
@@ -26,26 +27,22 @@ public class M26_ServidorTCPActivity extends Activity {
 		StrictMode.setThreadPolicy(politiques);
 
 		String res = "ERROR";
-		try {
-
-			ServerSocket ss = new ServerSocket(12345);
+		try (var ss = new ServerSocket(12345)) {
 			Log.i(M26_ServidorTCPActivity.class.getName(), "Esperant a client...");
 
-			Socket s = ss.accept();
-			Log.i(M26_ServidorTCPActivity.class.getName(), "S: Client connectat" + s.toString());
-
-			PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					s.getInputStream()));
-
-			res = in.readLine();
-			Log.i(M26_ServidorTCPActivity.class.getName(), "PONG" + res);
+			try (var s = ss.accept();
+				 var out = new PrintWriter(s.getOutputStream(), true);
+				 var in = new BufferedReader(new InputStreamReader(s.getInputStream()))) {
+				Log.i(M26_ServidorTCPActivity.class.getName(), "S: Client connectat" + s);
+				res = in.readLine();
+				Log.i(M26_ServidorTCPActivity.class.getName(), "PONG" + res);
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		TextView tv = new TextView(this);
+		var tv = new TextView(this);
 		tv.setText("S: " + res);
 		setContentView(tv);
 	}

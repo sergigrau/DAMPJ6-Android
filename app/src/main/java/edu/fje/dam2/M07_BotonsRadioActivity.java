@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author sergi.grau@fje.edu
  * @version 1.0, 06/11/2012
  * @version 2.0, 1/10/2020, actualització a API.30
+ * @version 2.0, 1/11/2026 actualització a API36
  */
 public class M07_BotonsRadioActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -26,11 +27,11 @@ public class M07_BotonsRadioActivity extends AppCompatActivity implements Compou
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.m07_botons_radio);
-        rb1 = (RadioButton) findViewById(R.id.radio1);
+        rb1 = findViewById(R.id.radio1);
         rb1.setOnCheckedChangeListener(this);
-        rb2 = (RadioButton) findViewById(R.id.radio2);
+        rb2 = findViewById(R.id.radio2);
         rb2.setOnCheckedChangeListener(this);
-        rb3 = (RadioButton) findViewById(R.id.radio3);
+        rb3 = findViewById(R.id.radio3);
         rb3.setOnCheckedChangeListener(this);
     }
     
