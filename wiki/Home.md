@@ -47,9 +47,9 @@ Benvingut/da a la wiki del projecte **DAMPJ6-Android**, una col·lecció d'exerc
 | [M38](M38-GridView) | GridView Estàndard | `GridView`, `ArrayAdapter` |
 | [M40](M40-Bluetooth) | Comunicació Bluetooth RFCOMM | `BluetoothAdapter`, `BluetoothSocket`, Lego NXT |
 | [M41](M41-Resultat) | Retorn de Resultats | `startActivityForResult`, `setResult` |
-| [M42](M42-Volley-Basic) | Volley HTTP Bàsic | `Volley`, `RequestQueue`, `StringRequest` |
-| [M43](M43-Volley-CuaPeticions) | Volley amb Memòria Cau | `DiskBasedCache`, `BasicNetwork`, `HurlStack` |
-| [M44](M44-Volley-JSON) | Volley JSON | `JsonObjectRequest`, `JSONObject` |
+| [M42](M42-Retrofit-Basic) | Retrofit HTTP Bàsic | `Retrofit`, `ScalarsConverterFactory`, `Call` |
+| [M43](M43-Retrofit-Cache) | Retrofit amb Memòria Cau | `OkHttpClient`, `Cache`, `Retrofit` |
+| [M44](M44-Retrofit-JSON) | Retrofit JSON | `GsonConverterFactory`, `JsonObject` |
 
 ---
 
@@ -59,7 +59,7 @@ Benvingut/da a la wiki del projecte **DAMPJ6-Android**, una col·lecció d'exerc
 - **Min SDK:** Android 8.1 (API 27)
 - **Target SDK:** Android 16 (API 36)
 - **Eina de construcció:** Android Gradle Plugin 8.9.0 / Gradle 9.8.2
-- **Llibreries:** AppCompat, Material Design, Volley 1.2.1
+- **Llibreries:** AppCompat, Material Design, Retrofit, OkHttp, Gson
 
 ---
 
