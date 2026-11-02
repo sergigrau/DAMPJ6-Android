@@ -4,13 +4,12 @@ plugins {
 
 android {
     namespace 'edu.fje.dam2'
-    compileSdk 36
-    buildToolsVersion '36.1.0'
+    compileSdk 34
 
     defaultConfig {
         applicationId "edu.fje.dam2"
         minSdkVersion 27
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -26,6 +25,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs << "-Xlint:deprecation"
     }
 }
 

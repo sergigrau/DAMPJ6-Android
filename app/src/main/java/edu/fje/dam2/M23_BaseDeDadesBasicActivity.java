@@ -1,30 +1,23 @@
-/*
-sqlite3 /data/data/edu.fje.dam2/databases/data.db
-sqlite> .tables
-.tables
-usuaris
-sqlite> select * from usuaris;
- */
 package edu.fje.dam2;
 
 import java.util.ArrayList;
 
-import android.app.ListActivity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Classe que hereta de la classe ListActivity i que
- * mostra com podem treballar amb la base de dades SQLlite3
+ * Classe que mostra com podem treballar amb la base de dades SQLlite3
  * @author sergi.grau@fje.edu
  * @version 1.0, 29/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
  * @version 2.0, 1/11/2026 actualització a API36
  */
-public class M23_BaseDeDadesBasicActivity extends ListActivity {
+public class M23_BaseDeDadesBasicActivity extends AppCompatActivity {
 
     private final String BASE_DADES = "dam2";
     private final String TAULA = "usuari";
@@ -33,17 +26,14 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-
         var resultats = new ArrayList<String>();
 
         try (SQLiteDatabase baseDades = this.openOrCreateDatabase(BASE_DADES, MODE_PRIVATE, null)) {
-
 
             baseDades.execSQL("CREATE TABLE IF NOT EXISTS "
                     + TAULA
                     + " (nom VARCHAR, cognom VARCHAR,"
                     + " pais VARCHAR, edat INT(3));");
-
 
             baseDades.execSQL("INSERT INTO "
                     + TAULA
@@ -53,7 +43,6 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
                     + TAULA
                     + " (nom, cognom, pais, edat)"
                     + " VALUES ('joan', 'perez', 'US', 34);");
-
 
             try (Cursor c = baseDades.rawQuery("SELECT nom, edat"
                     + " FROM " + TAULA
@@ -75,7 +64,6 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
 
                         String nomColumnaEdat = c.getColumnName(columnaEdat);
 
-
                         resultats.add("" + i + ": " + nom
                                 + " (" + nomColumnaEdat + ": " + edat + ")");
                     } while (c.moveToNext());
@@ -83,7 +71,9 @@ public class M23_BaseDeDadesBasicActivity extends ListActivity {
             }
         }
 
-        this.setListAdapter(new ArrayAdapter<>(this,
+        var listView = new ListView(this);
+        listView.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, resultats));
+        setContentView(listView);
     }
 }

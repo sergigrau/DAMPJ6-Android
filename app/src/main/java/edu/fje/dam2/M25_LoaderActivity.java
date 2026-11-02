@@ -1,4 +1,5 @@
 package edu.fje.dam2;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.provider.ContactsContract.Contacts;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
@@ -43,7 +45,7 @@ public class M25_LoaderActivity extends ListFragment implements LoaderManager.Lo
         // each time we are started use our listadapter
         setListAdapter(mAdapter);
         // and tell loader manager to start loading
-        getLoaderManager().initLoader(0, null, this);
+        LoaderManager.getInstance(this).initLoader(0, null, this);
     }
 
     // columns requested from the database
@@ -56,6 +58,7 @@ public class M25_LoaderActivity extends ListFragment implements LoaderManager.Lo
     private static final String[] FROM = { Contacts.DISPLAY_NAME_PRIMARY };
     private static final int[] TO = { android.R.id.text1 };
 
+    @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
@@ -64,7 +67,7 @@ public class M25_LoaderActivity extends ListFragment implements LoaderManager.Lo
 
         // no sub-selection, no sort order, simply every row
         // projection says we want just the _id and the name column
-        return new CursorLoader(getActivity(),
+        return new CursorLoader(requireContext(),
                 contentUri,
                 PROJECTION,
                 null,
@@ -73,13 +76,13 @@ public class M25_LoaderActivity extends ListFragment implements LoaderManager.Lo
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         // Once cursor is loaded, give it to adapter
         mAdapter.swapCursor(data);
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         // on reset take any old cursor away
         mAdapter.swapCursor(null);
     }

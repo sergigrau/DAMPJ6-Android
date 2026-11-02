@@ -3,9 +3,10 @@ package edu.fje.dam2;
 import java.io.IOException;
 import java.util.UUID;
 
-import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 
 /**
  * Classe que demostra el funcionament de les comunicacions amb Bluetooth.
@@ -20,15 +21,17 @@ import android.bluetooth.BluetoothSocket;
 public class M40_ConnexioBlueToothFilServidor extends Thread {
 
 	    private final BluetoothServerSocket mmServerSocket;
-	    private BluetoothAdapter adaptadorBT = BluetoothAdapter.getDefaultAdapter();
-	    
-	    public M40_ConnexioBlueToothFilServidor() {
+
+	    public M40_ConnexioBlueToothFilServidor(Context context) {
 	       
 	        BluetoothServerSocket tmp = null;
 	        try {
 	        	UUID uuid = UUID.fromString("00001000-0000-1000-8000-00805f9b34fb");
-
-	            tmp = adaptadorBT.listenUsingRfcommWithServiceRecord("dam2",uuid);
+				var manager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+				var adaptadorBT = manager != null ? manager.getAdapter() : null;
+				if (adaptadorBT != null) {
+					tmp = adaptadorBT.listenUsingRfcommWithServiceRecord("dam2", uuid);
+				}
 	        } catch (IOException e) { }
 	        mmServerSocket = tmp;
 	    }

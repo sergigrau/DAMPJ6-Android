@@ -4,20 +4,13 @@ import java.net.*;
 import java.io.*;
 
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.content.Context;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-/*
- * 
- *  <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
- * 
- */
 
 /**
  * Classe que utilitza la classe HTTPURLConnection, per a enviar i rebre dades d'Internet.
@@ -42,10 +35,6 @@ public class M34_ConnexioHTTPActivity extends AppCompatActivity {
 		StrictMode.ThreadPolicy politiques = new StrictMode.ThreadPolicy.Builder()
 		.permitAll().build();
 		StrictMode.setThreadPolicy(politiques);
-
-		//en el cas d'un proxy
-		// Settings.System.putString(getContentResolver(),
-		// Settings.System.HTTP_PROXY, "proxy:8080");
 
 		try {
 			URL url = new URL("http://www.google.com");
@@ -73,10 +62,15 @@ public class M34_ConnexioHTTPActivity extends AppCompatActivity {
 
 	
 	public boolean isXarxaDisponible() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-		if (networkInfo != null && networkInfo.isConnected()) {
-			return true;
+		var cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (cm != null) {
+			var activeNetwork = cm.getActiveNetwork();
+			if (activeNetwork != null) {
+				var caps = cm.getNetworkCapabilities(activeNetwork);
+				return caps != null && (caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+						|| caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+						|| caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET));
+			}
 		}
 		return false;
 	}

@@ -2,6 +2,7 @@ package edu.fje.dam2;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.widget.ProgressBar;
 
@@ -23,7 +24,7 @@ public class M21_FilsBarraProgresActivity extends AppCompatActivity {
 
     ProgressBar barraProgress;
     boolean isExecutant = false;
-    Handler handler = new Handler() {
+    Handler handler = new Handler(Looper.getMainLooper()) {
     /**
      * Mètode que es crida cada vegada que Handler rep un missatge
      */

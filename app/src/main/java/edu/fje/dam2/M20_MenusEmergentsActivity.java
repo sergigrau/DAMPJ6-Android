@@ -1,7 +1,6 @@
 package edu.fje.dam2;
 
 import android.os.Bundle;
-import android.app.ListActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,21 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
- * Classe que hereta de la classe ListActivity i que mostra com
- * funcionen els menus emergents. El menu permet modificar
+ * Classe que mostra com funcionen els menus emergents. El menu permet modificar
  * la distància entre els ítems de la llista.
- * Utilitza un layout XML per a definir la interfície .
- * amb un botó
+ * Utilitza un layout XML per a definir la interfície.
+ *
  * @author sergi.grau@fje.edu
  * @version 1.0, 29/11/2012
  * @version 2.0, 1/10/2020 actualització a API30
  * @version 2.0, 1/11/2026 actualització a API36
  */
-public class M20_MenusEmergentsActivity extends ListActivity {
+public class M20_MenusEmergentsActivity extends AppCompatActivity {
 
-    TextView seleccio;
-    String[] items = {"pomes", "peres", "taronges", "plàtans", "pinyes"};
+    private TextView seleccio;
+    private ListView listView;
+    private String[] items = {"pomes", "peres", "taronges", "plàtans", "pinyes"};
     public static final int id1 = Menu.FIRST + 1;
     public static final int id2 = Menu.FIRST + 2;
     public static final int id8 = Menu.FIRST + 3;
@@ -38,16 +39,15 @@ public class M20_MenusEmergentsActivity extends ListActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.m20_menus_emergents);
-        setListAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, items));
+        listView = findViewById(android.R.id.list);
         seleccio = findViewById(R.id.seleccio);
 
-        registerForContextMenu(getListView());
-    }
+        listView.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, items));
 
-    public void onListItemClick(ListView parent, View v,
-            int position, long id) {
-        seleccio.setText(items[position]);
+        listView.setOnItemClickListener((parent, v, position, id) -> seleccio.setText(items[position]));
+
+        registerForContextMenu(listView);
     }
 
     @Override
@@ -86,36 +86,15 @@ public class M20_MenusEmergentsActivity extends ListActivity {
     }
 
     private boolean escollirMenu(MenuItem item) {
-        switch (item.getItemId()) {
-            case id1:
-                getListView().setDividerHeight(1);
-                return (true);
+        int itemId = item.getItemId();
+        if (itemId == id1) { listView.setDividerHeight(1); return true; }
+        if (itemId == id2) { listView.setDividerHeight(2); return true; }
+        if (itemId == id8) { listView.setDividerHeight(8); return true; }
+        if (itemId == id16) { listView.setDividerHeight(16); return true; }
+        if (itemId == id24) { listView.setDividerHeight(24); return true; }
+        if (itemId == id32) { listView.setDividerHeight(32); return true; }
+        if (itemId == id40) { listView.setDividerHeight(40); return true; }
 
-            case id8:
-                getListView().setDividerHeight(8);
-                return (true);
-
-            case id16:
-                getListView().setDividerHeight(16);
-                return (true);
-
-            case id24:
-                getListView().setDividerHeight(24);
-                return (true);
-
-            case id2:
-                getListView().setDividerHeight(2);
-                return (true);
-
-            case id32:
-                getListView().setDividerHeight(32);
-                return (true);
-
-            case id40:
-                getListView().setDividerHeight(40);
-                return (true);
-        }
-
-        return (false);
+        return false;
     }
 }

@@ -53,7 +53,6 @@ public class M27_WebViewActivity extends AppCompatActivity {
         navegador.getSettings().setJavaScriptEnabled(true);
 
         //per geolocalització de HTML5
-        navegador.getSettings().setDatabaseEnabled(true);
         navegador.getSettings().setDomStorageEnabled(true);
         navegador.setWebChromeClient(new WebChromeClient() {
        	 public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {

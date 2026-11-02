@@ -69,7 +69,9 @@ SPACE - 62, SHIFT - 59, ENTER - 66, BACKSPACE - 67
         gridView.setAdapter(new ImageAdapter(this, SISTEMA_OPERATIU));
         gridView.setOnItemClickListener((parent, v, position, id) -> {
             var imm = (InputMethodManager) getSystemService(M37_GridViewPersonalitzatActivity.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            if (imm != null) {
+                imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT);
+            }
 
             etiqueta.setText(SISTEMA_OPERATIU[position]);
             focus = v.findViewById(R.id.grid_item_label);

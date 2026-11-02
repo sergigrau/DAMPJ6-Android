@@ -1,13 +1,14 @@
 package edu.fje.dam2;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,14 +39,26 @@ public class M40_ConnexioBluetooth extends AppCompatActivity {
             // Quan trobem un dispositiu
             if (BluetoothDevice.ACTION_FOUND.equals(accio)) {
                 // recuperem l'objecte corresponent al dispositiu
-                BluetoothDevice dispositiu = intent
-                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.i(getClass().getName(), "descobert dispositiu" +
-                        dispositiu.getName() + " amb MAC "
-                        + dispositiu.getAddress());
+                BluetoothDevice dispositiu;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    dispositiu = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                } else {
+                    dispositiu = getParcelableLegacy(intent);
+                }
+
+                if (dispositiu != null) {
+                    Log.i(getClass().getName(), "descobert dispositiu" +
+                            dispositiu.getName() + " amb MAC "
+                            + dispositiu.getAddress());
+                }
             }
         }
     };
+
+    @SuppressWarnings("deprecation")
+    private BluetoothDevice getParcelableLegacy(Intent intent) {
+        return intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +66,13 @@ public class M40_ConnexioBluetooth extends AppCompatActivity {
 
         setContentView(R.layout.m40_connexio_bluetooth);
 
-        BluetoothAdapter adaptadorBT = BluetoothAdapter
-                .getDefaultAdapter();
+        var manager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter adaptadorBT = manager != null ? manager.getAdapter() : null;
+
         if (adaptadorBT == null) {
             Toast.makeText(this, "Bluetooth no suportat", Toast.LENGTH_LONG)
                     .show();
+            return;
         }
         // activa BT
         if (!adaptadorBT.isEnabled()) {
@@ -79,38 +94,37 @@ public class M40_ConnexioBluetooth extends AppCompatActivity {
         //recuperem el mètode de la classe BT mitjançant tècniques reflexives
         Method obtenirUUIDS = null;
         try {
-            obtenirUUIDS = BluetoothAdapter.class.getDeclaredMethod("getUuids", null);
+            obtenirUUIDS = BluetoothAdapter.class.getDeclaredMethod("getUuids", (Class<?>[]) null);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
 
         ParcelUuid[] uuids = null;
-        try {
-            uuids = (ParcelUuid[]) obtenirUUIDS.invoke(adaptadorBT, null);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        if (obtenirUUIDS != null) {
+            try {
+                uuids = (ParcelUuid[]) obtenirUUIDS.invoke(adaptadorBT, (Object[]) null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        for (ParcelUuid uuid : uuids) {
-            Log.i(getClass().getName(), "UUID registrades: " + uuid.getUuid().toString());
+        if (uuids != null) {
+            for (ParcelUuid uuid : uuids) {
+                Log.i(getClass().getName(), "UUID registrades: " + uuid.getUuid().toString());
+            }
         }
 
-        if (dispositiusAparellats.size() > 0) {
+        if (dispositiusAparellats != null && dispositiusAparellats.size() > 0) {
             // mostra informació dels dispositius amb els que està aparellat
             for (BluetoothDevice dispositiu : dispositiusAparellats) {
                 Log.i(getClass().getName(), "dispositiu registrat " +
                         dispositiu.getName() + " amb MAC "
                         + dispositiu.getAddress());
-                for (ParcelUuid uuid : dispositiu.getUuids()) {
-                    Log.i(getClass().getName(), "UUIDs de dispositiu registrat: " + uuid.getUuid().toString());
+                if (dispositiu.getUuids() != null) {
+                    for (ParcelUuid uuid : dispositiu.getUuids()) {
+                        Log.i(getClass().getName(), "UUIDs de dispositiu registrat: " + uuid.getUuid().toString());
+                    }
                 }
-
-                //Thread fil1 = new M40_ConnexioBlueToothFilClient(dispositiu);
-                //fil1.start();
             }
         }
 
