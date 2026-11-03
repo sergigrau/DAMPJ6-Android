@@ -51,7 +51,6 @@ Benvingut/da a la wiki del projecte **DAMPJ6-Android**, una col·lecció d'exerc
 | [M42](M42-Retrofit-Basic) | Retrofit HTTP Bàsic | `Retrofit`, `ScalarsConverterFactory`, `Call` |
 | [M43](M43-Retrofit-Cache) | Retrofit amb Memòria Cau | `OkHttpClient`, `Cache`, `Retrofit` |
 | [M44](M44-Retrofit-JSON) | Retrofit JSON | `GsonConverterFactory`, `JsonObject` |
-| [M45](M45-Scrolling-Infinit) | Scrolling Infinit | `RecyclerView`, `LinearLayoutManager`, paginació |
 
 ---
 
@@ -65,4 +64,4 @@ Benvingut/da a la wiki del projecte **DAMPJ6-Android**, una col·lecció d'exerc
 
 ---
 
-> **Autor:** sergi.grau@fje.edu | **Curs:** 2025-2026
+> **Autor:** sergi.grau@fje.edu | **Curs:** 2026-27

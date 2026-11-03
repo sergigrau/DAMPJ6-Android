@@ -5,7 +5,7 @@
 <h1>Android Workshop</h1>
 <p>Set of examples and teaching samples used in programming mobile devices classes</p>
 
-## Temes i Exercicis del Curs (M01 - M45)
+## Temes i Exercicis del Curs (M01 - M44)
 
 1. **Activities & Intents**
    - **M01**: GUI Programada (`Button`, `setContentView`, `OnClickListener`)

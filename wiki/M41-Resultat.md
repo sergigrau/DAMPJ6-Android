@@ -10,4 +10,4 @@ Llançar una activitat secundària des d'una activitat principal i retornar un r
 | `M41_Resultat_Secundaria.java` | Activitat que calcula la suma i retorna el resultat |
 
 ---
-[Home](Home) | [M40](M40-Bluetooth) | [M42](M42-Volley-Basic)
+[Home](Home) | [M40](M40-Bluetooth) | [M42](M42-Retrofit-Basic)
