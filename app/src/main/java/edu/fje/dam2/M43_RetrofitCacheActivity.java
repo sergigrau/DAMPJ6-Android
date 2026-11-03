@@ -35,7 +35,7 @@ public class M43_RetrofitCacheActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle instanciaDesada) {
         super.onCreate(instanciaDesada);
-        setContentView(R.layout.m42_volley_basic);
+        setContentView(R.layout.m42_retrofit_basic);
         final TextView textSortida = findViewById(R.id.sortida);
 
         // Gestió de la cau amb OkHttp (1MB)

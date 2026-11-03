@@ -45,11 +45,13 @@ Benvingut/da a la wiki del projecte **DAMPJ6-Android**, una col·lecció d'exerc
 | [M36](M36-Comunicacio-JSON) | Comunicació JSON | `HttpURLConnection`, `JSONObject`, `record` |
 | [M37](M37-GridView-Personalitzat) | GridView Personalitzat | `BaseAdapter`, `LayoutInflater`, `ImageView` |
 | [M38](M38-GridView) | GridView Estàndard | `GridView`, `ArrayAdapter` |
+| [M39](M39-Scrolling-Infinit) | Scrolling Infinit | `RecyclerView`, `LinearLayoutManager`, paginació |
 | [M40](M40-Bluetooth) | Comunicació Bluetooth RFCOMM | `BluetoothAdapter`, `BluetoothSocket`, Lego NXT |
 | [M41](M41-Resultat) | Retorn de Resultats | `startActivityForResult`, `setResult` |
 | [M42](M42-Retrofit-Basic) | Retrofit HTTP Bàsic | `Retrofit`, `ScalarsConverterFactory`, `Call` |
 | [M43](M43-Retrofit-Cache) | Retrofit amb Memòria Cau | `OkHttpClient`, `Cache`, `Retrofit` |
 | [M44](M44-Retrofit-JSON) | Retrofit JSON | `GsonConverterFactory`, `JsonObject` |
+| [M45](M45-Scrolling-Infinit) | Scrolling Infinit | `RecyclerView`, `LinearLayoutManager`, paginació |
 
 ---
 

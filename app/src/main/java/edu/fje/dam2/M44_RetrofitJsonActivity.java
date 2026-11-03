@@ -38,7 +38,7 @@ public class M44_RetrofitJsonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle instanciaDesada) {
         super.onCreate(instanciaDesada);
-        setContentView(R.layout.m42_volley_basic);
+        setContentView(R.layout.m42_retrofit_basic);
         final TextView textSortida = findViewById(R.id.sortida);
 
         File cacheDir = new File(getCacheDir(), "http_cache");

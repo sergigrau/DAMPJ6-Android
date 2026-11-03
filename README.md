@@ -1,12 +1,11 @@
 # DAMPJ6-Android-material
 
-![alt tag](https://developer.android.com/images/brand/Android_Robot_100.png)
-![alt tag](https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Android_Studio_icon.svg/100px-Android_Studio_icon.svg.png)
+![alt tag](https://developer.android.com/static/images/brand/android-head_flat.png)
 
 <h1>Android Workshop</h1>
 <p>Set of examples and teaching samples used in programming mobile devices classes</p>
 
-## Temes i Exercicis del Curs (M01 - M44)
+## Temes i Exercicis del Curs (M01 - M45)
 
 1. **Activities & Intents**
    - **M01**: GUI Programada (`Button`, `setContentView`, `OnClickListener`)
@@ -25,6 +24,7 @@
    - **M16 & M17**: AutoCompleteTextView i GridView / Cel·les
    - **M18 to M20**: Picker Dialogs (Data/Hora), Pestanyes TabHost i Menús Emergents (Context Menu)
    - **M37 & M38**: GridView Personalitzat (`BaseAdapter`) i GridView Estàndard
+   - **M39**: Scrolling Infinit (`RecyclerView`, `LinearLayoutManager`, paginació)
 
 3. **Background Tasks & Concurrency**
    - **M21**: Fils i Barra de Progrés (`Thread`, `Handler`, `ProgressBar`)

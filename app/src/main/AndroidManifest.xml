@@ -28,8 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DAMPJ6">
         <activity
-            android:name=".M03_ComunicacioIntentActivity"
-            android:exported="true">
+            android:name=".M42_RetrofitBasicActivity"
+            android:exported="true"
+            android:theme="@style/Theme.DAMPJ6.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

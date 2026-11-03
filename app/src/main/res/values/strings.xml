@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="nom_aplicacio">DAMPJ6_Android</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
@@ -19,4 +19,5 @@
     <string name="rellotgeTab">Rellotge</string>
     <string name="botoTab">Boto</string>
     <string name="localitzacio">Localització:</string>
+    <string name="m39_title" tools:ignore="Typos">M39 - Scrolling Infinit</string>
 </resources>

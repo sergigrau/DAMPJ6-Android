@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.DAMPJ6.NoActionBar">
+    <style name="Theme.DAMPJ6.NoActionBar" parent="Theme.DAMPJ6">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
