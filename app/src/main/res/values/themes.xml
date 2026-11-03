@@ -19,7 +19,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.UF1Material.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.DAMPJ6.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.UF1Material.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.DAMPJ6.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
